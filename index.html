@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroZen - Entraînement Cognitif Anti-Stress</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .pause-branding {
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .pause-branding .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .main-content {
+            padding: 30px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stats-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stats-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .stat-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #4ecdc4;
+        }
+
+        .games-section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .game-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .game-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .game-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .game-description {
+            opacity: 0.9;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .game-duration {
+            background: rgba(78, 205, 196, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .play-btn {
+            background: linear-gradient(45deg, #4ecdc4, #45b7d1);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(78, 205, 196, 0.4);
+        }
+
+        .audio-controls {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .audio-title {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .binaural-controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .binaural-btn {
+            background: rgba(155, 89, 182, 0.8);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .binaural-btn:hover {
+            background: rgba(155, 89, 182, 1);
+            transform: scale(1.05);
+        }
+
+        .binaural-btn.active {
+            background: linear-gradient(45deg, #9b59b6, #8e44ad);
+            box-shadow: 0 5px 15px rgba(155, 89, 182, 0.4);
+        }
+
+        .volume-control {
+            margin-top: 15px;
+        }
+
+        .volume-slider {
+            width: 200px;
+            margin-left: 10px;
+        }
+
+        .game-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .game-area {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .timer-display {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .score-display {
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            background: rgba(78, 205, 196, 0.8);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 10px 25px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #4ecdc4, #45b7d1);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Jeux spécifiques */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            max-width: 300px;
+        }
+
+        .color-tile {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .color-tile:hover {
+            transform: scale(1.1);
+            border-color: white;
+        }
+
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            max-width: 300px;
+        }
+
+        .memory-card {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .memory-card:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .memory-card.flipped {
+            background: rgba(78, 205, 196, 0.8);
+            border-color: #4ecdc4;
+        }
+
+        .breathing-circle {
+            width: 200px;
+            height: 200px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            transition: all 2s ease;
+        }
+
+        .breathing-circle.inhale {
+            transform: scale(1.3);
+            background: rgba(78, 205, 196, 0.2);
+            border-color: #4ecdc4;
+        }
+
+        .breathing-circle.exhale {
+            transform: scale(0.8);
+            background: rgba(69, 183, 209, 0.2);
+            border-color: #45b7d1;
+        }
+
+        .progress-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .progress-chart {
+            height: 200px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            margin: 20px 0;
+            display: flex;
+            align-items: end;
+            justify-content: space-around;
+            padding: 10px;
+        }
+
+        .progress-bar {
+            background: linear-gradient(to top, #4ecdc4, #45b7d1);
+            border-radius: 5px 5px 0 0;
+            min-width: 30px;
+            margin: 0 2px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .progress-label {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8em;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .binaural-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .modal-content {
+                width: 95%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🧠 NeuroZen</h1>
+        <p>Entraînement Cognitif Anti-Stress - Boost ton cerveau, apaise ton esprit</p>
+        <div class="pause-branding">
+            <div class="logo">⏸️ PAUSE</div>
+            <div>Formation & Bien-être en Entreprise</div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <!-- Dashboard des statistiques -->
+        <div class="dashboard">
+            <div class="stats-card">
+                <div class="stat-icon">🎯</div>
+                <div class="stat-title">Score Moyen</div>
+                <div class="stat-value" id="avgScore">--</div>
+            </div>
+            <div class="stats-card">
+                <div class="stat-icon">📈</div>
+                <div class="stat-title">Progression</div>
+                <div class="stat-value" id="progression">+0%</div>
+            </div>
+            <div class="stats-card">
+                <div class="stat-icon">😌</div>
+                <div class="stat-title">Niveau de Stress</div>
+                <div class="stat-value" id="stressLevel">Moyen</div>
+            </div>
+            <div class="stats-card">
+                <div class="stat-icon">⏱️</div>
+                <div class="stat-title">Temps Joué</div>
+                <div class="stat-value" id="totalTime">0min</div>
+            </div>
+        </div>
+
+        <!-- Contrôles audio binauraux -->
+        <div class="audio-controls">
+            <div class="audio-title">🎵 Sons Binauraux Anti-Stress</div>
+            <div class="binaural-controls">
+                <button class="binaural-btn" onclick="playBinaural('focus')">🎯 Focus (40Hz)</button>
+                <button class="binaural-btn" onclick="playBinaural('relax')">😌 Relaxation (10Hz)</button>
+                <button class="binaural-btn" onclick="playBinaural('sleep')">😴 Sommeil (4Hz)</button>
+                <button class="binaural-btn" onclick="stopBinaural()">⏹️ Stop</button>
+            </div>
+            <div class="volume-control">
+                🔊 Volume: <input type="range" class="volume-slider" min="0" max="100" value="50" onchange="setVolume(this.value)">
+            </div>
+        </div>
+
+        <!-- Section des jeux -->
+        <div class="games-section">
+            <h2 class="section-title">🎮 Mini-Jeux Cognitifs (2 minutes)</h2>
+            <div class="games-grid">
+                <div class="game-card" onclick="startGame('colorMatch')">
+                    <div class="game-icon">🌈</div>
+                    <div class="game-title">Color Zen</div>
+                    <div class="game-description">Trouvez les couleurs harmonieuses pour apaiser votre esprit</div>
+                    <div class="game-duration">⏱️ 2 minutes</div>
+                    <button class="play-btn">Commencer</button>
+                </div>
+
+                <div class="game-card" onclick="startGame('memoryZen')">
+                    <div class="game-icon">🧩</div>
+                    <div class="game-title">Memory Zen</div>
+                    <div class="game-description">Mémorisez les motifs apaisants pour renforcer votre concentration</div>
+                    <div class="game-duration">⏱️ 2 minutes</div>
+                    <button class="play-btn">Commencer</button>
+                </div>
+
+                <div class="game-card" onclick="startGame('breathingRhythm')">
+                    <div class="game-icon">🫁</div>
+                    <div class="game-title">Respiration Rythmée</div>
+                    <div class="game-description">Suivez le rythme visuel pour une respiration anti-stress parfaite</div>
+                    <div class="game-duration">⏱️ 2 minutes</div>
+                    <button class="play-btn">Commencer</button>
+                </div>
+
+                <div class="game-card" onclick="startGame('focusFlow')">
+                    <div class="game-icon">🌊</div>
+                    <div class="game-title">Focus Flow</div>
+                    <div class="game-description">Naviguez dans les vagues de concentration pour atteindre le flow</div>
+                    <div class="game-duration">⏱️ 2 minutes</div>
+                    <button class="play-btn">Commencer</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section progression -->
+        <div class="progress-section">
+            <h3>📊 Votre Progression NeuroZen</h3>
+            <div class="progress-chart" id="progressChart"></div>
+            <p style="text-align: center; opacity: 0.8;">
+                Suivez l'évolution de vos performances cognitives et de votre niveau de stress avec PAUSE
+            </p>
+        </div>
+    </div>
+
+    <!-- Modal de jeu -->
+    <div id="gameModal" class="game-modal">
+        <div class="modal-content">
+            <h2 id="gameTitle">Jeu</h2>
+            <div class="game-area" id="gameArea">
+                <div class="timer-display" id="gameTimer">2:00</div>
+                <div class="score-display" id="gameScore">Score: 0</div>
+            </div>
+            <div class="controls">
+                <button class="btn btn-secondary" onclick="closeGame()">Quitter</button>
+                <button class="btn btn-primary" onclick="pauseGame()" id="pauseBtn">Pause</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Variables globales
+        let currentGame = null;
+        let gameTimer = null;
+        let gameTimeLeft = 120; // 2 minutes
+        let gameScore = 0;
+        let gamePaused = false;
+        let binauralAudio = null;
+        let gameStats = {
+            gamesPlayed: 0,
+            totalScore: 0,
+            totalTime: 0,
+            stressReduction: 0
+        };
+
+        // Sons binauraux (simulation avec Web Audio API)
+        let audioContext = null;
+        let binauralOscillator = null;
+        let gainNode = null;
+
+        // Initialisation
+        function initApp() {
+            loadStats();
+            updateDashboard();
+            createProgressChart();
+            
+            // Initialiser Web Audio
+            if (typeof AudioContext !== 'undefined' || typeof webkitAudioContext !== 'undefined') {
+                audioContext = new (AudioContext || webkitAudioContext)();
+            }
+        }
+
+        // Gestion des sons binauraux
+        function playBinaural(type) {
+            if (!audioContext) {
+                console.log('AudioContext non disponible');
+                return;
+            }
+            
+            // Reprendre le contexte si suspendu
+            if (audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+            
+            stopBinaural();
+            
+            // Créer oscillateurs pour effet binaural (oreille gauche et droite)
+            const leftOsc = audioContext.createOscillator();
+            const rightOsc = audioContext.createOscillator();
+            const leftGain = audioContext.createGain();
+            const rightGain = audioContext.createGain();
+            const merger = audioContext.createChannelMerger(2);
+            
+            // Fréquences de base et différences pour effet binaural
+            const baseFreq = 200; // Fréquence porteuse
+            const binauralFreqs = {
+                focus: 40,    // 40Hz de différence
+                relax: 10,    // 10Hz de différence  
+                sleep: 4      // 4Hz de différence
+            };
+            
+            const diff = binauralFreqs[type];
+            
+            // Configuration des oscillateurs
+            leftOsc.frequency.setValueAtTime(baseFreq, audioContext.currentTime);
+            rightOsc.frequency.setValueAtTime(baseFreq + diff, audioContext.currentTime);
+            
+            leftOsc.type = 'sine';
+            rightOsc.type = 'sine';
+            
+            // Configuration du volume
+            leftGain.gain.setValueAtTime(0.05, audioContext.currentTime);
+            rightGain.gain.setValueAtTime(0.05, audioContext.currentTime);
+            
+            // Connexions audio
+            leftOsc.connect(leftGain);
+            rightOsc.connect(rightGain);
+            leftGain.connect(merger, 0, 0);  // Canal gauche
+            rightGain.connect(merger, 0, 1); // Canal droit
+            merger.connect(audioContext.destination);
+            
+            // Démarrage
+            leftOsc.start();
+            rightOsc.start();
+            
+            // Stocker les références
+            binauralOscillator = { left: leftOsc, right: rightOsc, gain: leftGain, gain2: rightGain };
+            gainNode = leftGain; // Pour le contrôle du volume
+            
+            // Marquer le bouton actif
+            document.querySelectorAll('.binaural-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            console.log(`🎵 Son binaural ${type} activé (${baseFreq}Hz + ${diff}Hz)`);
+        }
+
+        function stopBinaural() {
+            if (binauralOscillator) {
+                if (binauralOscillator.left) binauralOscillator.left.stop();
+                if (binauralOscillator.right) binauralOscillator.right.stop();
+                binauralOscillator = null;
+            }
+            document.querySelectorAll('.binaural-btn').forEach(btn => btn.classList.remove('active'));
+        }
+
+        function setVolume(value) {
+            if (binauralOscillator && binauralOscillator.gain) {
+                const volume = value / 2000; // Volume ajusté
+                binauralOscillator.gain.gain.setValueAtTime(volume, audioContext.currentTime);
+                binauralOscillator.gain2.gain.setValueAtTime(volume, audioContext.currentTime);
+            }
+        }
+
+        // Démarrage des jeux
+        function startGame(gameType) {
+            currentGame = gameType;
+            gameTimeLeft = 120;
+            gameScore = 0;
+            gamePaused = false;
+            
+            document.getElementById('gameModal').style.display = 'block';
+            document.getElementById('gameTimer').textContent = '2:00';
+            document.getElementById('gameScore').textContent = 'Score: 0';
+            
+            const games = {
+                colorMatch: { title: '🌈 Color Zen', init: initColorMatch },
+                memoryZen: { title: '🧩 Memory Zen', init: initMemoryZen },
+                breathingRhythm: { title: '🫁 Respiration Rythmée', init: initBreathingRhythm },
+                focusFlow: { title: '🌊 Focus Flow', init: initFocusFlow }
+            };
+            
+            document.getElementById('gameTitle').textContent = games[gameType].title;
+            games[gameType].init();
+            
+            startGameTimer();
+        }
+
+        // Timer de jeu
+        function startGameTimer() {
+            gameTimer = setInterval(() => {
+                if (!gamePaused) {
+                    gameTimeLeft--;
+                    const minutes = Math.floor(gameTimeLeft / 60);
+                    const seconds = gameTimeLeft % 60;
+                    document.getElementById('gameTimer').textContent = 
+                        `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                    
+                    if (gameTimeLeft <= 0) {
+                        endGame();
+                    }
+                }
+            }, 1000);
+        }
+
+        // Fin de jeu
+        function endGame() {
+            clearInterval(gameTimer);
+            
+            // Mise à jour des stats
+            gameStats.gamesPlayed++;
+            gameStats.totalScore += gameScore;
+            gameStats.totalTime += 2;
+            gameStats.stressReduction += Math.min(gameScore / 10, 20);
+            
+            saveStats();
+            updateDashboard();
+            
+            alert(`🎉 Partie terminée !\nScore final: ${gameScore}\nBravo ! Votre stress a diminué grâce à PAUSE.`);
+            closeGame();
+        }
+
+        // Jeu Color Zen
+        function initColorMatch() {
+            const gameArea = document.getElementById('gameArea');
+            gameArea.innerHTML = '<div class="timer-display" id="gameTimer">2:00</div><div class="score-display" id="gameScore">Score: 0</div>';
+            
+            const grid = document.createElement('div');
+            grid.className = 'color-grid';
+            
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f39c12', '#9b59b6', '#e67e22', '#2ecc71', '#e74c3c'];
+            let targetColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            // Afficher la couleur cible
+            const targetDiv = document.createElement('div');
+            targetDiv.innerHTML = `<p>Trouvez cette couleur:</p><div style="width:50px;height:50px;background:${targetColor};border-radius:10px;margin:10px auto;"></div>`;
+            gameArea.appendChild(targetDiv);
+            
+            // Créer la grille
+            for (let i = 0; i < 16; i++) {
+                const tile = document.createElement('div');
+                tile.className = 'color-tile';
+                const isTarget = Math.random() < 0.25; // 25% de chance d'être la bonne couleur
+                const tileColor = isTarget ? targetColor : colors[Math.floor(Math.random() * colors.length)];
+                tile.style.background = tileColor;
+                tile.dataset.color = tileColor;
+                
+                tile.onclick = () => {
+                    console.log('Clic sur couleur:', tile.dataset.color, 'Target:', targetColor);
+                    
+                    if (tile.dataset.color === targetColor) {
+                        gameScore += 10;
+                        document.getElementById('gameScore').textContent = `Score: ${gameScore}`;
+                        console.log('Bon choix! Score:', gameScore);
+                        
+                        // Effet visuel de succès
+                        tile.style.border = '3px solid white';
+                        tile.style.transform = 'scale(1.1)';
+                        
+                        setTimeout(() => {
+                            // Nouvelle couleur cible
+                            targetColor = colors[Math.floor(Math.random() * colors.length)];
+                            targetDiv.querySelector('div').style.background = targetColor;
+                            console.log('Nouvelle couleur cible:', targetColor);
+                            
+                            // Regénérer la grille
+                            grid.innerHTML = '';
+                            for (let j = 0; j < 16; j++) {
+                                const newTile = document.createElement('div');
+                                newTile.className = 'color-tile';
+                                const newIsTarget = Math.random() < 0.25;
+                                const newTileColor = newIsTarget ? targetColor : colors[Math.floor(Math.random() * colors.length)];
+                                newTile.style.background = newTileColor;
+                                newTile.dataset.color = newTileColor;
+                                
+                                newTile.onclick = tile.onclick; // Réutiliser la même fonction
+                                grid.appendChild(newTile);
+                            }
+                        }, 500);
+                        
+                    } else {
+                        tile.style.opacity = '0.3';
+                        tile.style.background = '#333';
+                        console.log('Mauvais choix');
+                    }
+                };
+                
+                grid.appendChild(tile);
+            }
+            
+            gameArea.appendChild(grid);
+        }
+
+        // Jeu Memory Zen
+        function initMemoryZen() {
+            const gameArea = document.getElementById('gameArea');
+            gameArea.innerHTML = '<div class="timer-display" id="gameTimer">2:00</div><div class="score-display" id="gameScore">Score: 0</div>';
+            
+            const grid = document.createElement('div');
+            grid.className = 'memory-grid';
+            
+            const symbols = ['🌸', '🍃', '🌊', '☀️', '🌙', '⭐', '🦋', '🌈'];
+            const cards = [...symbols, ...symbols].sort(() => Math.random() - 0.5);
+            let flippedCards = [];
+            let matchedCards = [];
+            
+            cards.forEach((symbol, index) => {
+                const card = document.createElement('div');
+                card.className = 'memory-card';
+                card.dataset.symbol = symbol;
+                card.dataset.index = index;
+                
+                card.onclick = () => {
+                    if (flippedCards.length < 2 && !card.classList.contains('flipped')) {
+                        card.classList.add('flipped');
+                        card.textContent = symbol;
+                        flippedCards.push(card);
+                        
+                        if (flippedCards.length === 2) {
+                            setTimeout(() => {
+                                if (flippedCards[0].dataset.symbol === flippedCards[1].dataset.symbol) {
+                                    matchedCards.push(...flippedCards);
+                                    gameScore += 20;
+                                    document.getElementById('gameScore').textContent = `Score: ${gameScore}`;
+                                } else {
+                                    flippedCards.forEach(c => {
+                                        c.classList.remove('flipped');
+                                        c.textContent = '';
+                                    });
+                                }
+                                flippedCards = [];
+                            }, 1000);
+                        }
+                    }
+                };
+                
+                grid.appendChild(card);
+            });
+            
+            gameArea.appendChild(grid);
+        }
+
+        // Jeu Respiration Rythmée
+        function initBreathingRhythm() {
+            const gameArea = document.getElementById('gameArea');
+            gameArea.innerHTML = '<div class="timer-display" id="gameTimer">2:00</div><div class="score-display" id="gameScore">Score: 0</div>';
+            
+            const circle = document.createElement('div');
+            circle.className = 'breathing-circle';
+            circle.textContent = 'RESPIREZ';
+            
+            let phase = 'inhale';
+            let phaseTime = 0;
+            
+            const breathingInterval = setInterval(() => {
+                if (gamePaused) return;
+                
+                phaseTime++;
+                
+                if (phase === 'inhale') {
+                    circle.textContent = `INSPIREZ (${4 - phaseTime})`;
+                    circle.classList.add('inhale');
+                    circle.classList.remove('exhale');
+                    
+                    if (phaseTime >= 4) {
+                        phase = 'exhale';
+                        phaseTime = 0;
+                        gameScore += 5;
+                        document.getElementById('gameScore').textContent = `Score: ${gameScore}`;
+                    }
+                } else {
+                    circle.textContent = `EXPIREZ (${6 - phaseTime})`;
+                    circle.classList.add('exhale');
+                    circle.classList.remove('inhale');
+                    
+                    if (phaseTime >= 6) {
+                        phase = 'inhale';
+                        phaseTime = 0;
+                        gameScore += 5;
+                        document.getElementById('gameScore').textContent = `Score: ${gameScore}`;
+                    }
+                }
+            }, 1000);
+            
+            // Arrêter l'interval quand le jeu se termine
+            const originalEndGame = endGame;
+            endGame = function() {
+                clearInterval(breathingInterval);
+                originalEndGame();
+            };
+            
+            gameArea.appendChild(circle);
+        }
+
+        // Jeu Focus Flow
+        function initFocusFlow() {
+            const gameArea = document.getElementById('gameArea');
+            gameArea.innerHTML = '<div class="timer-display" id="gameTimer">2:00</div><div class="score-display" id="gameScore">Score: 0</div>';
+            
+            const flowText = document.createElement('div');
+            flowText.innerHTML = '<p style="margin-bottom: 20px;">Cliquez quand les cercles sont parfaitement alignés</p>';
+            
+            const flowContainer = document.createElement('div');
+            flowContainer.style.cssText = 'position: relative; width: 300px; height: 100px; margin: 0 auto; cursor: pointer;';
+            
+            const circle1 = document.createElement('div');
+            circle1.style.cssText = 'width: 60px; height: 60px; background: rgba(78,205,196,0.8); border-radius: 50%; position: absolute; top: 20px; transition: none;';
+            
+            const circle2 = document.createElement('div');
+            circle2.style.cssText = 'width: 60px; height: 60px; background: rgba(69,183,209,0.8); border-radius: 50%; position: absolute; top: 20px; transition: none;';
+            
+            let position1 = 0;
+            let position2 = 240;
+            let direction1 = 1;
+            let direction2 = -1;
+            let moveInterval;
+            
+            const moveCircles = () => {
+                if (gamePaused) return;
+                
+                position1 += direction1 * 2;
+                position2 += direction2 * 2;
+                
+                if (position1 >= 240 || position1 <= 0) direction1 *= -1;
+                if (position2 >= 240 || position2 <= 0) direction2 *= -1;
+                
+                circle1.style.left = position1 + 'px';
+                circle2.style.left = position2 + 'px';
+            };
+            
+            moveInterval = setInterval(moveCircles, 30);
+            
+            flowContainer.onclick = (e) => {
+                e.preventDefault();
+                const distance = Math.abs(position1 - position2);
+                console.log('Distance entre cercles:', distance);
+                
+                if (distance < 40) {
+                    gameScore += 15;
+                    document.getElementById('gameScore').textContent = `Score: ${gameScore}`;
+                    console.log('Excellent alignement! Score:', gameScore);
+                    
+                    // Effet visuel de succès
+                    flowContainer.style.background = 'rgba(78,205,196,0.3)';
+                    setTimeout(() => flowContainer.style.background = 'transparent', 300);
+                } else {
+                    console.log('Pas assez proche, distance:', distance);
+                    // Effet visuel d'échec
+                    flowContainer.style.background = 'rgba(255,107,107,0.2)';
+                    setTimeout(() => flowContainer.style.background = 'transparent', 300);
+                }
+            };
+            
+            flowContainer.appendChild(circle1);
+            flowContainer.appendChild(circle2);
+            
+            gameArea.appendChild(flowText);
+            gameArea.appendChild(flowContainer);
+            
+            // Nettoyer l'interval à la fin du jeu
+            const originalCloseGame = closeGame;
+            closeGame = function() {
+                clearInterval(moveInterval);
+                originalCloseGame();
+            };
+        }
+
+        // Contrôles de jeu
+        function pauseGame() {
+            gamePaused = !gamePaused;
+            document.getElementById('pauseBtn').textContent = gamePaused ? 'Reprendre' : 'Pause';
+        }
+
+        function closeGame() {
+            clearInterval(gameTimer);
+            document.getElementById('gameModal').style.display = 'none';
+            currentGame = null;
+            
+            // Nettoyer les intervals spécifiques aux jeux
+            if (typeof breathingInterval !== 'undefined') clearInterval(breathingInterval);
+            if (typeof moveCircles !== 'undefined') clearInterval(moveCircles);
+        }
+
+        // Gestion des statistiques
+        function loadStats() {
+            try {
+                const saved = localStorage.getItem('neurozen_stats');
+                if (saved) {
+                    gameStats = JSON.parse(saved);
+                    console.log('Stats chargées:', gameStats);
+                } else {
+                    console.log('Pas de stats sauvegardées, utilisation des valeurs par défaut');
+                }
+            } catch (e) {
+                console.error('Erreur lors du chargement des stats:', e);
+            }
+        }
+
+        function saveStats() {
+            try {
+                localStorage.setItem('neurozen_stats', JSON.stringify(gameStats));
+                console.log('Stats sauvegardées:', gameStats);
+            } catch (e) {
+                console.error('Erreur lors de la sauvegarde des stats:', e);
+            }
+        }
+
+        function updateDashboard() {
+            const avgScore = gameStats.gamesPlayed > 0 ? Math.round(gameStats.totalScore / gameStats.gamesPlayed) : 0;
+            const progression = gameStats.gamesPlayed > 1 ? 
+                Math.round(((gameStats.totalScore / gameStats.gamesPlayed) - 50) / 5) : 0;
+            
+            document.getElementById('avgScore').textContent = avgScore;
+            document.getElementById('progression').textContent = (progression > 0 ? '+' : '') + progression + '%';
+            document.getElementById('totalTime').textContent = gameStats.totalTime + 'min';
+            
+            // Calcul du niveau de stress (inversement proportionnel au score)
+            let stressLevel = 'Élevé';
+            if (avgScore > 80) stressLevel = 'Faible';
+            else if (avgScore > 40) stressLevel = 'Moyen';
+            
+            document.getElementById('stressLevel').textContent = stressLevel;
+            
+            console.log('Dashboard mis à jour - Avg Score:', avgScore, 'Progression:', progression, 'Stress:', stressLevel);
+        }
+
+        function createProgressChart() {
+            const chart = document.getElementById('progressChart');
+            chart.innerHTML = '';
+            
+            // Simulation de données de progression sur 7 jours
+            const progressData = [
+                { day: 'Lun', performance: 60, stress: 80 },
+                { day: 'Mar', performance: 65, stress: 75 },
+                { day: 'Mer', performance: 70, stress: 70 },
+                { day: 'Jeu', performance: 75, stress: 65 },
+                { day: 'Ven', performance: 80, stress: 60 },
+                { day: 'Sam', performance: 85, stress: 55 },
+                { day: 'Dim', performance: 90, stress: 50 }
+            ];
+            
+            progressData.forEach(data => {
+                // Barre de performance
+                const perfBar = document.createElement('div');
+                perfBar.className = 'progress-bar';
+                perfBar.style.height = data.performance * 2 + 'px';
+                perfBar.style.background = 'linear-gradient(to top, #4ecdc4, #45b7d1)';
+                
+                const perfLabel = document.createElement('div');
+                perfLabel.className = 'progress-label';
+                perfLabel.textContent = data.day;
+                perfBar.appendChild(perfLabel);
+                
+                // Barre de stress (inversée)
+                const stressBar = document.createElement('div');
+                stressBar.className = 'progress-bar';
+                stressBar.style.height = (100 - data.stress) * 2 + 'px';
+                stressBar.style.background = 'linear-gradient(to top, #f39c12, #e67e22)';
+                stressBar.style.opacity = '0.7';
+                
+                chart.appendChild(perfBar);
+                chart.appendChild(stressBar);
+            });
+            
+            // Légende
+            const legend = document.createElement('div');
+            legend.innerHTML = `
+                <div style="display: flex; justify-content: center; gap: 30px; margin-top: 15px;">
+                    <div><span style="color: #4ecdc4;">■</span> Performance Cognitive</div>
+                    <div><span style="color: #f39c12;">■</span> Réduction du Stress</div>
+                </div>
+            `;
+            chart.parentNode.appendChild(legend);
+        }
+
+        // Fermer la modal en cliquant à l'extérieur
+        window.onclick = function(event) {
+            const modal = document.getElementById('gameModal');
+            if (event.target === modal) {
+                closeGame();
+            }
+        }
+
+        // Initialisation au chargement
+        window.addEventListener('load', function() {
+            console.log('🧠 NeuroZen initialisé');
+            initApp();
+        });
+
+        // Gestion du son binaural au clic (nécessaire pour certains navigateurs)
+        document.addEventListener('click', function() {
+            if (audioContext && audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+        }, { once: true });
+    </script>
+</body>
+</html>
